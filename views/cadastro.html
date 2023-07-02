@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cadastro de Alunos</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to bottom, #2885e9, #032b57);
+    }
+
+    .container {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 2px solid black;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    form {
+      text-align: center;
+      font-size: 30px; 
+    }
+
+    input[type="text"],
+    select {
+      font-size: 25px; 
+    }
+
+    input[type="submit"] {
+      background-color: blue;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: darkblue;
+    }
+
+    a {
+      text-decoration: none;
+      color: blue;
+      margin-left: 10px;
+    }
+
+    @font-face {
+      font-family: "Gotham";
+      src: url(caminho/para/gotham.woff2) format("woff2"),
+          url(caminho/para/gotham.woff) format("woff");
+      
+    }
+
+    h1 {
+      margin-top: 0;
+      font-family: Gotham, Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cadastro de Alunos para Equipes de Interclasse</h1>
+    <form action="/cadastro/usuario" method="POST">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required><br><br>
+
+      <label for="matricula">Matrícula:</label>
+      <input type="text" id="matricula" name="matricula" required><br><br>
+
+      <label for="turma">Turma:</label>
+      <select id="turma" name="turma" required>
+        <option value="">Selecione a Turma</option>
+        <option value="1ADM">1 ADM</option>
+        <option value="1AGRO">1 AGRO</option>
+        <option value="1ENER">1 ENER</option>
+        <option value="1INFO">1 INFO</option>
+        <option value="2ADM">2 ADM</option>
+        <option value="2AGRO">2 AGRO</option>
+        <option value="2FIN">2 FIN</option>
+        <option value="2INFO">2 INFO</option>
+        <option value="3ADM">3 ADM</option>
+        <option value="3AGRO">3 AGRO</option>
+        <option value="3FIN">3 FIN</option>
+        <option value="3INFO">3 INFO</option>
+      </select><br><br>
+      <input type="submit" value="Cadastrar">
+    </form>
+  </div>
+</body>
+</html>

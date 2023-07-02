@@ -1,0 +1,62 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  h1 {
+    margin-top: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  form {
+    border: 2px solid black;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px; /* Ajuste o tamanho da fonte conforme necessário */
+  }
+  
+  input[type="text"],
+  select {
+  font-size: 25px; /* Ajuste o tamanho da fonte dos campos de entrada de texto conforme necessário */
+  }
+  input[type="submit"] {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: darkblue;
+  }
+  
+  a {
+    text-decoration: none;
+    color: blue;
+    margin-left: 10px;
+  }
+  
+  @font-face {
+    font-family: "Gotham";
+    src: url(caminho/para/gotham.woff2) format("woff2"),
+         url(caminho/para/gotham.woff) format("woff");
+    /* Adicione outros formatos de fonte, se necessário */
+  }
+  
+  h1 {
+    margin-top: 0;
+    font-family: Gotham, Arial, sans-serif;
+  }
+  

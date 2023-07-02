@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ title }}</title>
+  <style>
+    body {
+      @import url('https://fonts.googleapis.com/css2?family=Gotham:wght@400;700&display=swap');
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(#168508, #027231);
+      margin: 0;
+    }
+
+    .title-container {
+      margin-top: 10px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+    }
+
+    .title {
+      font-size: 32px;
+      margin-left: 10px;
+      font-family: 'Gotham', sans-serif;
+      color: #ffffff;
+    }
+
+    table {
+      /* Estilos da tabela */
+      display: none; /* Oculta a tabela inicialmente */
+      border-collapse: collapse;
+      width: 900px;
+      margin: auto;
+      background-color: #c7e9c0;
+      table-layout: auto;
+      transition: height 0.3s ease;
+    }
+
+    th, td {
+      /* Estilos das células da tabela */
+      border: 1px solid #4f7849;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .table-expanded {
+      height: auto;
+    }
+
+    th {
+      background-color: #2e4d33;
+      color: #ffffff;
+    }
+
+    #sortearButton {
+      display: inline-block;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background-color: #007bff; /* Cor azul */
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #sortearButton:hover {
+      background-color: #0056b3; /* Cor azul mais escura ao passar o mouse */
+    }
+
+    #downloadButton {
+      display: none; /* Oculta o botão de download inicialmente */
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background-color: #007bff; /* Cor azul */
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #downloadButton:hover {
+      background-color: #0056b3; /* Cor azul mais escura ao passar o mouse */
+    }
+  </style>
+</head>
+<body>
+  <div class="title-container">
+    <span class="title">Sorteio de Equipes</span>
+  </div>
+  <form id="sortearForm" action="/sorteio/sortear" method="get">
+    <button id="sortearButton" type="submit">Sortear</button>
+  </form>
+  <table id="tabelaSorteio">
+    <tr>
+      <th style="width: 300px;">Turma 1</th>
+      <th style="width: 300px;">Versus</th>
+      <th style="width: 300px;">Turma 2</th>
+    </tr>
+    {{#each tabela}}
+    <tr>
+      <td>{{this.turma1}}</td>
+      <td>X</td>
+      <td>{{this.turma2}}</td>
+    </tr>
+    {{/each}}
+  </table>
+  <button id="downloadButton" onclick="downloadPDF()">Baixar PDF</button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+  <script>
+    function downloadPDF() {
+      const element = document.documentElement;
+      const tabelaSorteio = document.getElementById('tabelaSorteio');
+
+      const opt = {
+        margin: 10,
+        filename: 'Sorteio-Interclasse.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      // Aumenta o valor do atributo 'width' da tabela para 100% ao gerar o PDF
+      tabelaSorteio.style.width = '100%';
+
+      html2pdf()
+        .set(opt)
+        .from(element)
+        .save()
+        .then(() => {
+          // Restaura o valor original do atributo 'width' da tabela após gerar o PDF
+          tabelaSorteio.style.width = '900px';
+        });
+    }
+
+    const sortearForm = document.getElementById('sortearForm');
+    const sortearButton = document.getElementById('sortearButton');
+    const tabelaSorteio = document.getElementById('tabelaSorteio');
+    const downloadButton = document.getElementById('downloadButton');
+
+    sortearForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      sortearButton.style.display = 'none'; // Oculta o botão "sortear"
+      tabelaSorteio.style.display = 'block'; // Exibe a tabela
+      downloadButton.style.display = 'inline-block'; // Exibe o botão de download
+    });
+  </script>
+</body>
+</html>
